@@ -1,5 +1,5 @@
 package models;
-public class Address extends AddressDetails {
+public class Address {
 
     private String businessId;
     private String name;
