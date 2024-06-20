@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import static io.restassured.RestAssured.given;
+import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.notNullValue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -16,7 +17,8 @@ public class GetAddress {
 
     /**
      * This test show how you would make assert using object mapper for nested objects.
-     * Also it show how to use Response interface to create a test.
+     * To show how to use Response interface to create a test.
+     * Add test using schema validation.
      */
     @Test
     public void getAddress() throws JsonProcessingException {
@@ -28,7 +30,9 @@ public class GetAddress {
                 assertThat().log().all().
                 header("Content-Type", "text/html; charset=utf-8").
                 statusCode(200).
-                body(is(notNullValue()));
+                body(is(notNullValue())).
+                body(matchesJsonSchemaInClasspath("addressSchema.json"));
+
 
         String responseBody = response.getBody().asString();
         System.out.println("Response Body: " + responseBody);

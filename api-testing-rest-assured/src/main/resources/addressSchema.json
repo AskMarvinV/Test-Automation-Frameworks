@@ -1,0 +1,52 @@
+{
+  "$schema": "http://json-schema.org/draft-06/schema#",
+  "$ref": "#/definitions/Welcome1",
+  "definitions": {
+    "Welcome1": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "businessId": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "address": {
+          "$ref": "#/definitions/Address"
+        }
+      },
+      "required": [
+        "address",
+        "businessId",
+        "name"
+      ],
+      "title": "Welcome1"
+    },
+    "Address": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "street": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "state": {
+          "type": "string"
+        },
+        "postalCode": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "city",
+        "postalCode",
+        "state",
+        "street"
+      ],
+      "title": "Address"
+    }
+  }
+}
